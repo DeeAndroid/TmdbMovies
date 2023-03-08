@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="movieDetails"
+            type="com.dee.popularmovies.data.res.ResultsItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/moviecard"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/two_hundred_dp"
+            android:layout_marginStart="@dimen/fifteen_dp"
+            android:layout_marginTop="@dimen/ten_dp"
+            android:layout_marginEnd="@dimen/fifteen_dp"
+            android:foreground="?selectableItemBackgroundBorderless"
+            app:cardCornerRadius="@dimen/ten_dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/movieposter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/two_hundred_dp"
+                android:adjustViewBounds="true"
+                android:foreground="#50000000"
+                android:orientation="vertical"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/movietitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/layoutBottom"
+                android:layout_gravity="center"
+                android:elevation="@dimen/ten_dp"
+                android:gravity="center"
+                android:text="@{movieDetails.name!=null ? movieDetails.name :`-`}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/twenty_sp"
+                android:textStyle="bold"
+                tools:text="@string/label_name_of_the_movie" />
+
+            <TextView
+                android:id="@+id/rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_vertical"
+                android:layout_marginStart="@dimen/twenty_dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/ten_dp"
+                android:background="@drawable/rounded_boder"
+                android:backgroundTint="@color/white"
+                android:gravity="center"
+                android:minWidth="@dimen/fifty_dp"
+                android:text="@{movieDetails.voteAverage!=null ? movieDetails.voteAverage.toString():`-`}"
+                android:textColor="@color/bright_gray"
+                android:textSize="@dimen/twenty_sp"
+                android:textStyle="bold"
+                android:visibility="@{movieDetails.voteAverage!=null ? View.VISIBLE :View.GONE,default=visible}" />
+
+            <LinearLayout
+                android:id="@+id/layoutBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="bottom|center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/ten_dp"
+                android:paddingBottom="@dimen/ten_dp"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{movieDetails.firstAirDate!=null ? movieDetails.firstAirDate :`-`}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ten_sp"
+                    android:textStyle="bold"
+                    tools:text="12-12-12"
+
+                    />
+
+                <TextView
+                    android:id="@+id/votes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/ten_sp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{movieDetails.voteCount !=null ? movieDetails.voteCount+` Ratings` :`-`}"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    tools:text="10d 14h"
+
+                    />
+
+                <TextView
+                    android:id="@+id/countrylanguage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@{movieDetails.originalLanguage !=null ? movieDetails.originalLanguage :`-`}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/twelve_sp"
+                    android:textStyle="bold"
+                    tools:text="Tamil"
+
+                    />
+
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
